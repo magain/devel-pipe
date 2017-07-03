@@ -1,0 +1,26 @@
+---
+  apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    name: jenkins-rc
+    namespace: devel-pipe
+    labels:
+      app: jenkins
+      version: 0.0.2
+  spec:
+    replicas: 1
+    selector:
+      app: jenkins
+    template:
+      metadata:
+        name: jenkins
+        labels:
+          app: jenkins
+          version: 0.0.2
+      spec:
+        containers:
+        - name: jenkins
+          image: magain/devel-pipe-jenkins:0.0.2
+          ports:
+            - name: jenkins-port
+              containerPort: 8080
