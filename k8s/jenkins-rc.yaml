@@ -1,26 +1,46 @@
 ---
   apiVersion: v1
   kind: ReplicationController
+#  kind: Pod
   metadata:
     name: jenkins-rc
-    namespace: devel-pipe
+#    namespace: devel-pipe
     labels:
-      app: jenkins
-      version: 0.0.2
+      app: jenkins-rc
   spec:
     replicas: 1
     selector:
-      app: jenkins
+      app: jenkins-rc
     template:
       metadata:
-        name: jenkins
+        name: jenkins-rc
         labels:
-          app: jenkins
-          version: 0.0.2
+          app: jenkins-rc
       spec:
+#        securityContext:
+#          runAsUser: 1000
+#          fsGroup: 2000
         containers:
         - name: jenkins
-          image: magain/devel-pipe-jenkins:0.0.2
+          image: magain/devel-pipe-jenkins:0.0.4
           ports:
-            - name: jenkins-port
+            - name: jnkns-ui-port
               containerPort: 8080
+              hostPort: 80
+            - name: jnkns-jnlp-port
+              containerPort: 50000
+              hostPort: 50000
+          volumeMounts:
+            - mountPath: /var/run/docker.sock
+              name: docker-sock
+            - mountPath: /var/jenkins_home
+              name: jenkins-data
+        volumes:
+          - name: docker-sock
+            hostPath:
+              path: /var/run/docker.sock
+          - name: jenkins-data
+            hostPath:
+              path: /data/jenkins
+#            persistentVolumeClaim:
+#              claimName: jenkins-home-pvc
