@@ -3,7 +3,7 @@
   kind: Service
   metadata:
     name: jenkins-svc
-    namespace: devel-pipe
+#    namespace: devel-pipe
     labels:
       app: jenkins
   spec:
@@ -13,5 +13,5 @@
     - protocol: TCP
       port: 31001
       nodePort: 31001
-      targetPort: jenkins-port
+      targetPort: jnkns-ui-port
     type: NodePort

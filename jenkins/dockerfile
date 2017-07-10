@@ -1,7 +1,5 @@
 FROM jenkins
 
-VOLUME /var/jenkins_home
-
 USER root
 
 ### Preinstall additionally needed plugins ###
