@@ -19,14 +19,8 @@ USER root
 
 
 ### Install docker
-RUN apt-get update
-RUN apt-get purge "docker.io*"
-RUN apt-get update
-RUN apt-get install -y apt-transport-https ca-certificates
-RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-COPY docker.list /etc/apt/sources.list.d/docker.list
-RUN apt-get update
-RUN apt-get install -y docker-engine
+RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.05.0-ce.tgz && \
+ tar --strip-components=1 -xvzf docker-17.05.0-ce.tgz -C /usr/local/bin
 
 ### Change ownership for docker "engine"
 RUN chown jenkins:jenkins /var/run/docker.sock
