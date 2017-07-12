@@ -17,25 +17,25 @@
           app: jenkins
       spec:
         securityContext:
-          runAsUser: 1001
-          fsGroup: 1001
+#          runAsUser: 1001
+          fsGroup: 1000
         containers:
         - name: jenkins
-          image: magain/devel-pipe-jenkins:0.0.3
+          image: magain/devel-pipe-jenkins:latest
           ports:
             - name: jnkns-ui-port
               containerPort: 8080
             - name: jnkns-jnlp-port
               containerPort: 50000
           volumeMounts:
-            - mountPath: /var/run/docker.sock
-              name: docker-sock
+#            - mountPath: /var/run/docker.sock
+#              name: docker-sock
             - mountPath: /var/jenkins_home
               name: jenkins-data
         volumes:
-          - name: docker-sock
-            hostPath:
-              path: /var/run/docker.sock
+#          - name: docker-sock
+#            hostPath:
+#              path: /var/run/docker.sock
           - name: jenkins-data
 #            hostPath:
 #              path: '/Users/Shared/Jenkins/data'

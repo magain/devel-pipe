@@ -13,5 +13,5 @@
     accessModes:
       - ReadWriteMany
     hostPath:
-#      path: "/tmp/data"
-      path: '/Users/Shared/Jenkins/data'
+      path: "/data/jenkins"
+#      path: '/Users/Shared/Jenkins/data'
