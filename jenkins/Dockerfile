@@ -1,4 +1,5 @@
-FROM blueocean
+FROM jenkinsci/blueocean:latest
+MAINTAINER Marc Gaines <marc.gaines@gaines-solutions.de>
 
 USER jenkins
 
