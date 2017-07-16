@@ -13,5 +13,6 @@
     accessModes:
       - ReadWriteMany
     hostPath:
-      path: "/data/jenkins"
+#      path: "/data/jenkins"
 #      path: '/Users/Shared/Jenkins/data'
+      path: /mnt/sda1/jenkins_home

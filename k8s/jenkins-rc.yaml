@@ -3,7 +3,6 @@
   kind: ReplicationController
   metadata:
     name: jenkins-rc
-#    namespace: devel-pipe
     labels:
       app: jenkins
   spec:
@@ -16,29 +15,24 @@
         labels:
           app: jenkins
       spec:
-        privileged: true
-        securityContext:
-#          runAsUser: 1001
-          fsGroup: 1000
         containers:
         - name: jenkins
           image: magain/devel-pipe-jenkins:latest
+          securityContext:
+            privileged: true
           ports:
             - name: jnkns-ui-port
               containerPort: 8080
             - name: jnkns-jnlp-port
               containerPort: 50000
           volumeMounts:
-#            - mountPath: /var/run/docker.sock
-#              name: docker-sock
+            - mountPath: /var/lib/docker
+              name: docker-storage-graph
             - mountPath: /var/jenkins_home
               name: jenkins-data
         volumes:
-#          - name: docker-sock
-#            hostPath:
-#              path: /var/run/docker.sock
+          - name: docker-storage-graph
+            emptyDir: {}
           - name: jenkins-data
-#            hostPath:
-#              path: '/Users/Shared/Jenkins/data'
             persistentVolumeClaim:
               claimName: jenkins-home-pvc
