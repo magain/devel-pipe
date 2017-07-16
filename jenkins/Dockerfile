@@ -30,8 +30,12 @@ RUN curl -sL https://github.com/docker/docker/raw/master/hack/dind > /usr/local/
 
 VOLUME /var/lib/docker
 
-# Start jenkins
-ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Start docker daemon
-CMD ["dind", "docker", "daemon"]
+#CMD ["dind", "docker", "daemon"]
+CMD []
+# Start jenkins
+#ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
