@@ -1,0 +1,16 @@
+---
+  kind: PersistentVolume
+  apiVersion: v1
+  metadata:
+    name: jenkins-home-pv
+#    namespace: collab
+    labels:
+      type: local
+  spec:
+    storageClassName: manual
+    capacity:
+      storage: 5Gi
+    accessModes:
+      - ReadWriteMany
+    hostPath:
+      path: /mnt/sda1/rocketchat_mongodb

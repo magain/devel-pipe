@@ -15,6 +15,8 @@
         labels:
           app: jenkins
       spec:
+#        securityContext:
+#          fsGroup: 1000
         containers:
         - name: jenkins
           image: magain/devel-pipe-jenkins:latest

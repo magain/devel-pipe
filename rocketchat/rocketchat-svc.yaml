@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rocketchat-svc
+  labels:
+    app: rocketchat
+    tier: app
+spec:
+  ports:
+    - name: gui
+      port: 3000
+      targetPort: http
+      protocol: TCP
+  selector:
+    app: rocketchat
+    tier: app

@@ -34,8 +34,12 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Start docker daemon
-#CMD ["dind", "docker", "daemon"]
-CMD []
+CMD ["dind", "docker", "daemon"]
+
+#CMD ["dockerd"]
+
+#USER jenkins
+
 # Start jenkins
 #ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
